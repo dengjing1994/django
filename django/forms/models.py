@@ -984,7 +984,7 @@ class BaseModelFormSet(BaseFormSet):
             if isinstance(pk, (ForeignKey, OneToOneField)):
                 qs = pk.remote_field.model._default_manager.get_queryset()
             else:
-                qs = self.model._default_manager.get_queryset()
+                qs = self.get_queryset()
             qs = qs.using(form.instance._state.db)
             if form._meta.widgets:
                 widget = form._meta.widgets.get(self._pk_field.name, HiddenInput)
